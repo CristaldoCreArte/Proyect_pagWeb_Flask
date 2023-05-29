@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',  filename='../static/css/style.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <title>Formulario</title>
+</head>
+<body class="container-body-form">
+
+
+    <main>
+
+
+        <div class="contenedor__todo">
+            <div class="caja__trasera">
+                <div class="caja_trasera-login">
+                    <h3>¿Ya tienes una cuenta?</h3>
+                    <p>Iniciar sesion para entrar a la pagina.</p>
+                    <button id="btn__iniciar-sesion" >Iniciar Sesion</button>
+                </div>
+
+                <div class="caja__trasera-register">
+                    <h3>¿Aun no tienes una cuenta?</h3>
+                    <p>Registrarte para que puedas ingresar a la pagina.</p>
+                    <button id="btn__registrarse" >Registrarse</button>
+                </div>
+            </div>
+            
+
+            <div class="contenedor__login-register">
+                <!--Login-->
+                <form class="formulario__login" action="/login" method="post">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <ul class=flashes>
+                            {% for mensaje_email in messages %}
+                                <li>{{ mensaje_email }}</li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+
+                    <h2>Iniciar Sesion</h2>
+                    <input type="text" required name="email" id="email" placeholder="Correo Electronico">
+                    <input type="password" required name="password" id="password" placeholder="Contraseña">
+                    <button>Entrar</button>
+
+
+                </form>
+                <!--Register-->
+                <form class="formulario__register" action="/register" method="post">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <ul class=flashes>
+                            {% for mensagge in messages %}
+                                <li>{{mensagge }}</li>
+                            {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+                    <h2>Registrarse</h2>
+                    <input type="text" required name="username" id="username" placeholder="Nombre Completo">
+                    <input type="email" required name="email" id="email" placeholder="Correo Electronico">
+                    <input type="password" required name="password" id="password" placeholder="password">
+                    <button type="submit" >Registrarse</button>
+
+                </form>
+            </div>
+            
+        </div>
+
+    </main>
+    <script src="../static/JS/code.js"></script>
+</body>
+</html>
